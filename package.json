@@ -144,7 +144,5 @@
       ]
     ]
   },
-  "dependencies": {
-    "@greedygame/react-native-sdkx": "^0.0.4"
-  }
+  "dependencies": {}
 }
