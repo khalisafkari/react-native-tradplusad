@@ -13,6 +13,7 @@ import { NativeModules,
   UIManager,
   Platform,
   ViewStyle,
+  NativeEventEmitter
 } from 'react-native';
 
 const LINKING_ERROR =
@@ -33,7 +34,10 @@ interface TradplusAdRewardInterface {
   initAd(unitId: string, autoInstall: boolean): void;
   entryAdScenario(scene: string): void;
   showAd(scene: string): void;
-  isReady(): boolean
+  isReady(): Promise<boolean>
+  reloadAd(): void;
+  clearCacheAd(): void;
+  onDestroy(): void;
 }
 
 interface TradplusadProps {
@@ -41,11 +45,47 @@ interface TradplusadProps {
   style: ViewStyle;
 }
 
-export const TradplusSdk = TradplusAdSdk as TradplusAdSdkInterface;
-export const TradplusReward = TradplusAdReward as TradplusAdRewardInterface;
-
 export const TradplusadView = UIManager.getViewManagerConfig(ComponentName) != null
     ? requireNativeComponent<TradplusadProps>(ComponentName)
     : () => {
         throw new Error(LINKING_ERROR);
     };
+
+export const TradplusSdk = TradplusAdSdk as TradplusAdSdkInterface;
+export const TradplusReward = TradplusAdReward as TradplusAdRewardInterface;
+
+interface eventKey {
+  [key: string]: any;
+}
+
+const rewardEvent = new NativeEventEmitter(TradplusAdReward);
+const subscriptionsReward: eventKey = {};
+
+export const AddEventReward = (event: string, callback: (event: any) => void) => {
+   let new_event = rewardEvent.addListener(event, callback);
+   if (subscriptionsReward[event]) {
+      subscriptionsReward[event].remove();
+      delete subscriptionsReward[event];
+   }   
+   subscriptionsReward[event] = new_event;
+   return;
+};
+
+export const RemoveEventReward = (event: string) => {
+   if (subscriptionsReward[event]) {
+      subscriptionsReward[event].remove();
+      delete subscriptionsReward[event]
+   }
+   return;
+};
+
+export const RemoveAllEventReward = () => {
+  const keys = Object.keys(subscriptionsReward);
+  if (keys.length > 0) {
+    keys.map((i) => {
+      subscriptionsReward[i].remove();
+      delete subscriptionsReward[i];
+    });
+  }
+  return;
+}
