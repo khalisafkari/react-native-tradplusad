@@ -23,6 +23,7 @@ public class TradplusadPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> list = new ArrayList<>();
         list.add(new TradplusadViewManager());
+        list.add(new TradplusBannerViewManager());
         return list;
     }
 }

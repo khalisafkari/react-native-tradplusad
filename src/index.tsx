@@ -24,6 +24,8 @@ const LINKING_ERROR =
 
 const {TradplusAdReward, TradplusAdSdk} = NativeModules;
 const ComponentName = 'TradplusadView';
+const ComponentNameBanner  = 'TradplusBannerView';
+
 
 interface TradplusAdSdkInterface {
   initSdk(appId: string): void
@@ -50,6 +52,15 @@ export const TradplusadView = UIManager.getViewManagerConfig(ComponentName) != n
     : () => {
         throw new Error(LINKING_ERROR);
     };
+
+export const TradplusAdBanner = UIManager.getViewManagerConfig(ComponentNameBanner) != null
+    ? requireNativeComponent<{
+      placementId: string;
+      style: ViewStyle
+    }>(ComponentNameBanner) 
+    : () => {
+      throw new Error(LINKING_ERROR);
+    };   
 
 export const TradplusSdk = TradplusAdSdk as TradplusAdSdkInterface;
 export const TradplusReward = TradplusAdReward as TradplusAdRewardInterface;
