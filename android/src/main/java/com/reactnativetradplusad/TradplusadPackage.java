@@ -23,7 +23,6 @@ public class TradplusadPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> list = new ArrayList<>();
-        list.add(new TradplusadViewManager());
         list.add(new TradplusBannerViewManager());
         list.add(new TradplusNativeBannerManager());
         return list;

@@ -123,7 +123,7 @@ class TPBannerStandar extends ReactViewGroup {
 
 public class TradplusNativeBannerManager extends SimpleViewManager<TPBannerStandar> {
 
-  public static final String REACT_CLASS = "TradplusNativeBannerManager";
+  public static final String REACT_CLASS = "TradplusNativeBanner";
 
   @NonNull
   @Override

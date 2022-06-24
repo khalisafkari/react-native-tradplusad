@@ -12,7 +12,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import java.util.Map;
 
 public class TradplusBannerViewManager extends ViewGroupManager<TradplusAdBanner> {
-    public static final String REACT_CLASS = "TradplusBannerViewManager";
+    public static final String REACT_CLASS = "TradplusBannerView";
 
     @NonNull
     @Override
