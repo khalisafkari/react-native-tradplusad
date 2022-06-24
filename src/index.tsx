@@ -8,6 +8,7 @@
 // } from 'react-native';
 
 
+
 // const LINKING_ERROR =
 //   `The package 'react-native-tradplusad' doesn't seem to be linked. Make sure: \n\n` +
 //   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -93,8 +94,11 @@
 //   return;
 // }
 
-export * as AdSDK from './Ad';
-export * as AdIntertitial from './IntertitialAd';
-export * as AdReward from './RewardAd';
-export * as BannerAd from './BannerAd';
-export * as NativeBanner from './NativeBanner';
+
+// export * as AdSDK from './Ad';
+
+export { default as AdSdk } from './Ad';
+export { default as AdIntertitial } from './IntertitialAd';
+export { default as AdReward } from './RewardAd';
+export { default as BannerAd } from './BannerAd';
+export { default as NativeBanner } from './NativeBanner';
