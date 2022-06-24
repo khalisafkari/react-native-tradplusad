@@ -1,4 +1,3 @@
-import React from 'react';
 import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
 import LINKING_ERROR from './Link';
 
@@ -17,23 +16,6 @@ const TradplusAdBanner = UIManager.getViewManagerConfig('TradplusNativeBannerMan
     ? requireNativeComponent<props>('TradplusNativeBannerManager') : () => { throw new Error(LINKING_ERROR) }
 
 
-
-class NativeBanner extends React.PureComponent<props> {
-    
-
-    render(): React.ReactNode {
-        return (
-            <TradplusAdBanner
-                {...this.props}
-            />
-        )
-    }
-}
-
-
-
-export default React.memo(NativeBanner, (prev, next) => {
-    return prev.placementId === next.placementId;
-});
-
+const BannerAd = TradplusAdBanner;
+export default BannerAd;
 
