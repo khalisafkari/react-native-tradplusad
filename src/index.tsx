@@ -7,6 +7,9 @@
 //   NativeEventEmitter
 // } from 'react-native';
 
+import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
+import LINKING_ERROR from './Link';
+
 
 
 // const LINKING_ERROR =
@@ -100,10 +103,29 @@
 export { default as AdSdk } from './Ad';
 export { default as AdIntertitial } from './IntertitialAd';
 export { default as AdReward } from './RewardAd';
-import BannerAd from './BannerAd';
-import NativeBanner from './NativeBanner';
 
-export {
-    BannerAd,
-    NativeBanner
+const BannerName  = 'TradplusBannerView';
+const NativeBannerName = 'TradplusNativeBannerManager';
+
+interface props  extends ViewProps {
+    placementId: string;
+    onAdLoaded?(event: any): void;
+    onAdClicked?(event: any): void;
+    onAdImpression?(event: any): void;
+    onAdLoadFailed?(event: any): void;
+    onAdClosed?(event: any): void;
+    onBannerRefreshed?(): void
 }
+
+export const BannerAd = UIManager.getViewManagerConfig(BannerName) != null
+    ? requireNativeComponent<props>(BannerName) 
+    : () => {
+      throw new Error(LINKING_ERROR);
+};   
+
+
+export const NativeBanner = UIManager.getViewManagerConfig(NativeBannerName) != null
+    ? requireNativeComponent<props>(NativeBannerName) 
+    : () => {
+      throw new Error(LINKING_ERROR);
+};   
