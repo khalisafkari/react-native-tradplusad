@@ -16,6 +16,6 @@ const TradplusAdBanner = UIManager.getViewManagerConfig('TradplusNativeBannerMan
     ? requireNativeComponent<props>('TradplusNativeBannerManager') : () => { throw new Error(LINKING_ERROR) }
 
 
-const BannerAd = TradplusAdBanner;
-export default BannerAd;
+const NativeBanner = TradplusAdBanner;
+export default NativeBanner;
 
