@@ -100,5 +100,10 @@
 export { default as AdSdk } from './Ad';
 export { default as AdIntertitial } from './IntertitialAd';
 export { default as AdReward } from './RewardAd';
-export { default as BannerAd } from './BannerAd';
-export { default as NativeBanner } from './NativeBanner';
+import BannerAd from './BannerAd';
+import NativeBanner from './NativeBanner';
+
+export {
+    BannerAd,
+    NativeBanner
+}
