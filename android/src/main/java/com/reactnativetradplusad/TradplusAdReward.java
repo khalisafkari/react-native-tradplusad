@@ -9,7 +9,6 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
@@ -17,7 +16,6 @@ import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
-import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.reward.RewardAdListener;
 import com.tradplus.ads.open.reward.TPReward;
 
@@ -44,6 +42,11 @@ public class TradplusAdReward extends ReactContextBaseJavaModule
   public void initAd(String adId, Boolean auto) {
       tpReward = new TPReward(getReactApplicationContext(), adId, auto);
       tpReward.setAdListener(this);
+  }
+
+  @ReactMethod
+  public void loadAd() {
+    tpReward.loadAd();
   }
 
   @ReactMethod
@@ -135,10 +138,6 @@ public class TradplusAdReward extends ReactContextBaseJavaModule
       WritableMap map = Arguments.createMap();
       map.putString("data", tpAdInfo.toString());
       sendEvent("onAdPlayAgainReward", null);
-  }
-
-  private void sendLog(String l) {
-    Log.d(NAME, l);
   }
 
   private void sendEvent(String eventName,@Nullable WritableMap map) {

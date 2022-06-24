@@ -16,6 +16,7 @@ public class TradplusadPackage implements ReactPackage {
         List<NativeModule> list = new ArrayList<>();
         list.add(new TradplusAdSdk(reactContext));
         list.add(new TradplusAdReward(reactContext));
+        list.add(new TradplusAdIntertitial(reactContext));
         return list;
     }
 
@@ -24,6 +25,7 @@ public class TradplusadPackage implements ReactPackage {
         List<ViewManager> list = new ArrayList<>();
         list.add(new TradplusadViewManager());
         list.add(new TradplusBannerViewManager());
+        list.add(new TradplusNativeBannerManager());
         return list;
     }
 }
