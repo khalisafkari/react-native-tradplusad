@@ -1,9 +1,9 @@
 import React from 'react';
-import { requireNativeComponent, StyleProp, ViewStyle } from 'react-native';
+import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
+import LINKING_ERROR from './Link';
 
 
-interface props {
-    style?: StyleProp<ViewStyle>
+interface props extends ViewProps {
     placementId: string;
     onAdLoaded?(event: any): void;
     onAdClicked?(event: any): void;
@@ -13,7 +13,9 @@ interface props {
     onBannerRefreshed?(): void
 }
 
-const TradplusAdBanner = requireNativeComponent<props>('TradplusNativeBannerManager');
+const TradplusAdBanner = UIManager.getViewManagerConfig('TradplusNativeBannerManager') != null
+    ? requireNativeComponent<props>('TradplusNativeBannerManager') : () => { throw new Error(LINKING_ERROR) }
+
 
 
 class NativeBanner extends React.PureComponent<props> {
@@ -22,7 +24,6 @@ class NativeBanner extends React.PureComponent<props> {
     render(): React.ReactNode {
         return (
             <TradplusAdBanner
-                style={{ height: 50 }}
                 {...this.props}
             />
         )
