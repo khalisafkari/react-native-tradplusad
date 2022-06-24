@@ -1,4 +1,3 @@
-import React from 'react';
 import { requireNativeComponent, StyleProp, UIManager, ViewProps, ViewStyle } from 'react-native';
 import LINKING_ERROR from './Link';
 
