@@ -7,11 +7,6 @@
 //   NativeEventEmitter
 // } from 'react-native';
 
-import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
-import LINKING_ERROR from './Link';
-
-
-
 // const LINKING_ERROR =
 //   `The package 'react-native-tradplusad' doesn't seem to be linked. Make sure: \n\n` +
 //   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
