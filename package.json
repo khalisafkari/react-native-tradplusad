@@ -1,6 +1,6 @@
 {
   "name": "react-native-tradplusad",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Leading mediation platform, integrating more than 50 mainstream ad network SDKs worldwide, and providing convenient, professional and efficient ad monetization services for developers domestic and abroad.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
